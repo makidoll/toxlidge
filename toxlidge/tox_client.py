@@ -44,8 +44,8 @@ class ToxIncomingFile():
 		try:
 			contact = await self.tox_client.friend_id_to_contact(self.friend_id)
 			if self.is_avatar:
-				print(self.data)
-				print(self.filename)
+				# print(self.data)
+				# print(self.filename)
 				await contact.set_avatar(self.data, self.filename)
 			else:
 				await contact.send_file(data=self.data, file_name=self.filename)
