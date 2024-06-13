@@ -1,0 +1,20 @@
+services:
+    slidge:
+        build:
+            context: .
+            target: dev
+        network_mode: service:prosody
+        volumes:
+            - ./toxlidge:/venv/lib/python/site-packages/legacy_module:ro
+            - ./persistent:/var/lib/slidge
+        depends_on:
+            prosody:
+                condition: service_started
+
+    prosody:
+        image: docker.io/nicocool84/slidge-prosody-dev:latest
+        ports:
+            - "5281:5281" # XMPP port for clients to connect to
+            - "5222:5222" # prosody's http_file_share
+            - "4444:4444" # for nginx (optional, no-upload)
+            - "8888:80" # for movim (optional)
