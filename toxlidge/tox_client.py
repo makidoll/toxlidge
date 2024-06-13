@@ -107,7 +107,8 @@ class ToxClient():
 			print("Failed to connect")
 		else:
 			print("Connected!")
-			self.connected_future.set_result(None)
+			if self.connected_future != None:
+				self.connected_future.set_result(None)
 
 	def __on_friend_request(self, public_key: str, message: str):
 		print(public_key)
