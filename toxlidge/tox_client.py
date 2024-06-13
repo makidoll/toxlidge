@@ -68,7 +68,7 @@ class ToxClient():
 	tox: Tox = None
 	save_path = ""
 
-	connected_future: asyncio.Future = None
+	connected_f: asyncio.Future = None
 
 	incoming_files: list[ToxIncomingFile] = list()
 
@@ -84,7 +84,7 @@ class ToxClient():
 
 		for node in res_json["nodes"]:
 			ipv4 = node["ipv4"]
-			ipv6 = node["ipv6"]
+			# ipv6 = node["ipv6"]
 			port = node["port"]
 			public_key = node["public_key"]
 
@@ -94,11 +94,11 @@ class ToxClient():
 				except:
 					pass
 
-			if ipv6 != "-" and ipv6 != "NONE":
-				try:
-					self.tox.bootstrap(ipv6, port, public_key)
-				except:
-					pass
+			# if ipv6 != "-" and ipv6 != "NONE":
+			# 	try:
+			# 		self.tox.bootstrap(ipv6, port, public_key)
+			# 	except:
+			# 		pass
 
 	# callbacks
 
@@ -107,8 +107,8 @@ class ToxClient():
 			print("Failed to connect")
 		else:
 			print("Connected!")
-			if self.connected_future != None:
-				self.connected_future.set_result(None)
+			if self.connected_f != None and not self.connected_f.done():
+				self.connected_f.set_result(None)
 
 	def __on_friend_request(self, public_key: str, message: str):
 		print(public_key)
@@ -404,11 +404,11 @@ class ToxClient():
 		print("Connecting...")
 
 		self.active = True
-		self.connected_future = asyncio.Future()
+		self.connected_f = asyncio.Future()
 
 		asyncio.create_task(self.loop())  # dont await
 
-		return self.connected_future
+		return self.connected_f
 
 	def logout(self):
 		if not self.active:
