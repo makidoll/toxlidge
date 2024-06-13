@@ -84,7 +84,7 @@ class ToxClient():
 
 		for node in res_json["nodes"]:
 			ipv4 = node["ipv4"]
-			# ipv6 = node["ipv6"]
+			ipv6 = node["ipv6"]
 			port = node["port"]
 			public_key = node["public_key"]
 
@@ -94,11 +94,11 @@ class ToxClient():
 				except:
 					pass
 
-			# if ipv6 != "-" and ipv6 != "NONE":
-			# 	try:
-			# 		self.tox.bootstrap(ipv6, port, public_key)
-			# 	except:
-			# 		pass
+			if ipv6 != "-" and ipv6 != "NONE":
+				try:
+					self.tox.bootstrap(ipv6, port, public_key)
+				except:
+					pass
 
 	# callbacks
 
