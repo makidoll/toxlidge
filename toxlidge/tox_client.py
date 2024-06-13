@@ -230,8 +230,8 @@ class ToxClient():
 		self.tox.self_set_name(name)
 		self.__save()
 
-	def self_set_status(self, status: str):
-		self.tox.self_set_status(status)
+	def self_set_status_message(self, status: str):
+		self.tox.self_set_status_message(status)
 		self.__save()
 
 	async def send_message(self, friend_key: str, message: str) -> int:

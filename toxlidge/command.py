@@ -85,7 +85,7 @@ class SetToxStatus(Command):
 	    _ifrom,
 	):
 		new_status = form_values["new_status"].strip()
-		session.tox_client.self_set_status(new_status)
+		session.tox_client.self_set_status_message(new_status)
 		if new_status == "":
 			return "Cleared Tox status"
 		else:
