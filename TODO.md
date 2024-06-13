@@ -8,3 +8,4 @@
 -   status message xmpp -> tox
 -   display name (not command) xmpp -> tox
 -   status (not command) xmpp -> tox
+-   xmpp jid might confuse tox ids when its upper or lower case
