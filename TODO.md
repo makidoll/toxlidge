@@ -1,0 +1,10 @@
+-   uploading files xmpp -> tox
+-   typing in gajim
+-   names dont come through in conversations
+-   profile pictures xmpp -> tox
+-   profile pictures tox -> xmpp
+-   lots of cleanup
+-   status xmpp -> tox
+-   status message xmpp -> tox
+-   display name (not command) xmpp -> tox
+-   status (not command) xmpp -> tox
